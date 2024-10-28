@@ -29,6 +29,7 @@ class IntroduceViewController: UIViewController {
         //line
         drawLine()
         updateUI()
+        countNumber = selectedpokemon.number
 //        countNumber = selectedpokemon.number
         
     }
@@ -108,19 +109,19 @@ class IntroduceViewController: UIViewController {
     @IBAction func LastButtonTapped(_ sender: Any) {
         if countNumber > 0 {
             countNumber -= 1
-            selectedpokemon = Pokemons[countNumber]
-            updateUI()
+        }else{
+            countNumber = Pokemons.count - 1
         }
-
+        selectedpokemon = Pokemons[countNumber]
+        updateUI()
         
     }
     @IBAction func NextButtonTapped(_ sender: Any) {
         if countNumber < Pokemons.count - 1{
             countNumber += 1
-            selectedpokemon = Pokemons[countNumber]
-            updateUI()
-        }
-        
+        }else{countNumber = 0}
+        selectedpokemon = Pokemons[countNumber]
+        updateUI()
     }
 
 }
