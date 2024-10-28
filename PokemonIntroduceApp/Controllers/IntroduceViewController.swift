@@ -9,15 +9,40 @@ import UIKit
 import SpriteKit
 
 class IntroduceViewController: UIViewController {
+    @IBOutlet weak var PokemonImageView: UIImageView!
+    @IBOutlet weak var PokemonNumberLabel: UILabel!
+    @IBOutlet weak var PokemonNameLabel: UILabel!
+    @IBOutlet weak var PokemonTypeLabel: UILabel!
+    @IBOutlet weak var PokemonCharacterLabel: UILabel!
+    @IBOutlet weak var PokemonPropertyLabel: UILabel!
+    
+    var countNumber: Int = 0
+    
 
+    var selectedpokemon: Pokemon!
+    var testnum : Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //starParticle
         flowstars()
         //line
         drawLine()
+        updateUI()
+//        countNumber = selectedpokemon.number
         
     }
+    func updateUI(){
+        PokemonImageView.image = UIImage(named: selectedpokemon!.imagename)
+        PokemonNameLabel.text = selectedpokemon?.名稱
+        PokemonTypeLabel.text = selectedpokemon?.分類
+        PokemonCharacterLabel.text = selectedpokemon?.特性
+        PokemonPropertyLabel.text = selectedpokemon?.屬性.joined(separator: ",")
+        PokemonNumberLabel.text = selectedpokemon?.編號
+    }
+    
+    
+    
     func flowstars(){
         //設定粒子
         let starEmitterCell = CAEmitterCell()
@@ -80,8 +105,29 @@ class IntroduceViewController: UIViewController {
     }
 
 
+    @IBAction func LastButtonTapped(_ sender: Any) {
+        if countNumber > 0 {
+            countNumber -= 1
+            selectedpokemon = Pokemons[countNumber]
+            updateUI()
+        }
+
+        
+    }
+    @IBAction func NextButtonTapped(_ sender: Any) {
+        if countNumber < Pokemons.count - 1{
+            countNumber += 1
+            selectedpokemon = Pokemons[countNumber]
+            updateUI()
+        }
+        
+    }
+
 }
-#Preview{
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    return storyboard.instantiateViewController(withIdentifier: "IntroduceViewController")
-}
+//#Preview{
+//    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//    return storyboard.instantiateViewController(withIdentifier: "IntroduceViewController")
+//}
+//
+//
+//
