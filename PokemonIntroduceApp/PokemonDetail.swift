@@ -43,6 +43,7 @@ var moods:[Pokemon] = []
 var elecs:[Pokemon] = []
 
 
+
 func typeAdd(){
     for i in 0...Pokemons.count - 1{
         if Pokemons[i].屬性.contains("水"){

@@ -23,6 +23,10 @@ class SelectedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fires.removeAll()
+        waters.removeAll()
+        moods.removeAll()
+        elecs.removeAll()
         typeAdd()
         updateUI()
         
